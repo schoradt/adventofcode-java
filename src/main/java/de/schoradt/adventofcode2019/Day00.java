@@ -18,7 +18,7 @@ import java.util.logging.Logger;
  * @author schoradt
  */
 public class Day00 {
-    public List<Integer> loadFile(String filename) {
+    public List<Integer> loadIntegerListFromFile(String filename) {
         List<Integer> list = new ArrayList<>();
         
         try (Scanner s = new Scanner(new File(filename))) {

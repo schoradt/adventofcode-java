@@ -25,7 +25,7 @@ public class Runner {
     public void day01() {
         Day01 day = new Day01();
         
-        List<Integer> masses = day.loadFile("data/day01.txt");
+        List<Integer> masses = day.loadIntegerListFromFile("data/day01.txt");
         
         int result1 = day.sumFuels(masses);
         
