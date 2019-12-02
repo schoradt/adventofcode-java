@@ -20,6 +20,7 @@ public class Runner {
         Runner runner = new Runner();
         
         runner.day01();
+        runner.day02();
     }
     
     public void day01() {
@@ -34,6 +35,25 @@ public class Runner {
         int result2 = day.sumAllFuels(masses);
         
         System.out.println("day01 result 2 " + result2);
+    }
+    
+    public void day02() {
+        Day02 day = new Day02();
+        
+        List<Integer> programm = day.parseIntegerLine(day.loadLine("data/day02.txt"));
+        
+        programm.set(1, 12);
+        programm.set(2, 2);
+        
+        int result1 = day.processProgramm(programm);
+        
+        System.out.println("day02 result 1 " + result1);
+        
+        List<Integer> programm2 = day.parseIntegerLine(day.loadLine("data/day02.txt"));
+        
+        int result2 = day.hackNounVerb(programm2, 19690720);
+        
+        System.out.println("day02 result 2 " + result2);
     }
     
 }
