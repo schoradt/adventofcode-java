@@ -39,7 +39,7 @@ public class Day02Test {
     public void testProcessProgramm(String line, int should) {
         Day02 day = new Day02();
         
-        List<Integer> input = day.parseIntegerLine(line);
+        List<Integer> input = day.parseIntergerLines(day.splitLine(line));
         
         assertEquals(should, day.processProgramm(input));
     }

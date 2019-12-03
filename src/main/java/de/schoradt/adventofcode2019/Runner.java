@@ -26,7 +26,7 @@ public class Runner {
     public void day01() {
         Day01 day = new Day01();
         
-        List<Integer> masses = day.loadIntegerListFromFile("data/day01.txt");
+        List<Integer> masses = day.parseIntergerLines(day.loadLines("data/day01.txt"));
         
         int result1 = day.sumFuels(masses);
         
@@ -40,7 +40,7 @@ public class Runner {
     public void day02() {
         Day02 day = new Day02();
         
-        List<Integer> programm = day.parseIntegerLine(day.loadLine("data/day02.txt"));
+        List<Integer> programm = day.parseIntergerLines(day.splitLine(day.loadLines("data/day02.txt").get(0)));
         
         programm.set(1, 12);
         programm.set(2, 2);
@@ -49,7 +49,7 @@ public class Runner {
         
         System.out.println("day02 result 1 " + result1);
         
-        List<Integer> programm2 = day.parseIntegerLine(day.loadLine("data/day02.txt"));
+        List<Integer> programm2 = day.parseIntergerLines(day.splitLine(day.loadLines("data/day02.txt").get(0)));
         
         int result2 = day.hackNounVerb(programm2, 19690720);
         

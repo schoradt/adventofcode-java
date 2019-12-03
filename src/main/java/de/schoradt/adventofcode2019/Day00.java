@@ -21,12 +21,12 @@ import java.util.logging.Logger;
  * @author schoradt
  */
 public class Day00 {
-    public List<Integer> loadIntegerListFromFile(String filename) {
-        List<Integer> list = new ArrayList<>();
+    public List<String> loadLines(String filename) {
+        List<String> list = new ArrayList<>();
         
         try (Scanner s = new Scanner(new File(filename))) {
             while (s.hasNext()){
-                list.add(Integer.parseInt(s.next()));
+                list.add(s.next());
             }
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Day00.class.getName()).log(Level.SEVERE, null, ex);
@@ -35,30 +35,25 @@ public class Day00 {
         return list;
     }
     
-    public List<Integer> parseIntegerLine(String line) {
-        List<Integer> result = new ArrayList<>();
+    public List<Integer> parseIntergerLines(List<String> integers) {
+        List<Integer> list = new ArrayList<>();
+        
+        for(String integer: integers) {
+            list.add(Integer.parseInt(integer));
+        }
+
+        return list;
+    }
+    
+    public List<String> splitLine(String line) {
+        List<String> list = new ArrayList<>();
         
         String[] items = line.split(",");
         
         for(String item: items) {
-            result.add(Integer.parseInt(item));
+            list.add(item);
         }
         
-        return result;
+        return list;
     }
-    
-    public String loadLine(String filename) {
-        try {
-            BufferedReader brTest = new BufferedReader(new FileReader(filename));
-            
-            return brTest.readLine();
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(Day00.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(Day00.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        return "";
-    }
-    
 }
