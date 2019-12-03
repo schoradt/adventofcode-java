@@ -5,6 +5,7 @@
  */
 package de.schoradt.adventofcode2019;
 
+import de.schoradt.adventofcode2019.graph.Path;
 import java.util.List;
 
 /**
@@ -21,6 +22,7 @@ public class Runner {
         
         runner.day01();
         runner.day02();
+        runner.day03();
     }
     
     public void day01() {
@@ -54,6 +56,24 @@ public class Runner {
         int result2 = day.hackNounVerb(programm2, 19690720);
         
         System.out.println("day02 result 2 " + result2);
+    }
+    
+    public void day03() {
+        Day03 day = new Day03();
+        
+        List<String> lines = day.loadLines("data/day03.txt");
+        
+        Path p1 = new Path(day.splitLine(lines.get(0)));
+        Path p2 = new Path(day.splitLine(lines.get(1)));
+        
+        
+        int result1 = day.shortestCrossDistance(p1, p2);
+        
+        System.out.println("day03 result 1 " + result1);
+        
+        int result2 = day.shortestCrossSteps(p1, p2);
+        
+        System.out.println("day03 result 2 " + result2);
     }
     
 }
