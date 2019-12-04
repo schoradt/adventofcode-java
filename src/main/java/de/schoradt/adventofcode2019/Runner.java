@@ -23,6 +23,7 @@ public class Runner {
         runner.day01();
         runner.day02();
         runner.day03();
+        runner.day04();
     }
     
     public void day01() {
@@ -74,6 +75,18 @@ public class Runner {
         int result2 = day.shortestCrossSteps(p1, p2);
         
         System.out.println("day03 result 2 " + result2);
+    }
+    
+    public void day04() {
+        Day04 day = new Day04();
+        
+        int result1 = day.countPasswords(246540, 787419);
+        
+        System.out.println("day04 result 1 " + result1);
+        
+        int result2 = day.countPasswordsSharpened(246540, 787419);
+        
+        System.out.println("day04 result 2 " + result2);
     }
     
 }
