@@ -24,6 +24,7 @@ public class Runner {
         runner.day02();
         runner.day03();
         runner.day04();
+        runner.day05();
     }
     
     public void day01() {
@@ -87,6 +88,22 @@ public class Runner {
         int result2 = day.countPasswordsSharpened(246540, 787419);
         
         System.out.println("day04 result 2 " + result2);
+    }
+    
+    public void day05() {
+        Day05 day = new Day05();
+        
+        List<Integer> programm = day.parseIntergerLines(day.splitLine(day.loadLines("data/day05.txt").get(0)));
+        
+        int result1 = day.processProgramm(programm, 1, false, false);
+        
+        System.out.println("day05 result 1 " + result1);
+        
+        List<Integer> programm2 = day.parseIntergerLines(day.splitLine(day.loadLines("data/day05.txt").get(0)));
+        
+        int result2 = day.processProgramm(programm2, 5, false, false);
+        
+        System.out.println("day05 result 2 " + result2);
     }
     
 }
