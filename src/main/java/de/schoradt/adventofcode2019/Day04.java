@@ -5,7 +5,6 @@
  */
 package de.schoradt.adventofcode2019;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -42,7 +41,7 @@ class Day04 extends Day00 {
             if (checkPasswordSharpened(i)) {
                 res++;
                 
-                System.out.println("check " + i + " " + "OK");
+                //System.out.println("check " + i + " " + "OK");
             } else {
                 //System.out.println("FAIL");
             }
@@ -77,15 +76,7 @@ class Day04 extends Day00 {
             last = digit;
         }
         
-        if (!following) {
-            return false;
-        }
-        
-        if (decrease) {
-            return false;
-        }
-        
-        return true;
+        return following && !decrease;
     }
     
     public boolean checkPasswordSharpened(int password) {
@@ -131,15 +122,7 @@ class Day04 extends Day00 {
             following = true;
         }
         
-        if (!following) {
-            return false;
-        }
-        
-        if (decrease) {
-            return false;
-        }
-        
-        return true;
+        return following && !decrease;
     }
     
     private List<Integer> toDigits(int number) {

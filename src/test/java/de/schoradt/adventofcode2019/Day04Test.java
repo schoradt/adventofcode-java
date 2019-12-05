@@ -5,11 +5,6 @@
  */
 package de.schoradt.adventofcode2019;
 
-import de.schoradt.adventofcode2019.data.Pair;
-import de.schoradt.adventofcode2019.graph.Path;
-import de.schoradt.adventofcode2019.graph.Point;
-import java.util.List;
-
 import static org.junit.Assert.*;
 import org.junit.jupiter.api.Test;
 
