@@ -6,6 +6,7 @@
 package de.schoradt.adventofcode2019.graph;
 
 import de.schoradt.adventofcode2019.data.Pair;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -116,7 +117,6 @@ public class Path {
         Point ref = new Point(0,0);
         
         int steps1 = 0;
-        int steps2 = 0;
         
         for (Point p: points) {
             if (path2.isOn(p) && !p.equals(ref)) {
@@ -126,7 +126,6 @@ public class Path {
             
             steps1++;
         }
-        
         
         return list;
     }

@@ -47,18 +47,13 @@ public class Runner {
     public void day02() {
         Day02 day = new Day02();
         
-        List<Integer> programm = day.parseIntergerLines(day.splitLine(day.loadLines("data/day02.txt").get(0)));
+        String line = day.loadLines("data/day02.txt").get(0);
         
-        programm.set(1, 12);
-        programm.set(2, 2);
-        
-        int result1 = day.processProgramm(programm);
+        int result1 = day.processProgramm(line, 12, 2);
         
         System.out.println("day02 result 1 " + result1);
         
-        List<Integer> programm2 = day.parseIntergerLines(day.splitLine(day.loadLines("data/day02.txt").get(0)));
-        
-        int result2 = day.hackNounVerb(programm2, 19690720);
+        int result2 = day.hackNounVerb(line, 19690720);
         
         System.out.println("day02 result 2 " + result2);
     }
@@ -96,15 +91,13 @@ public class Runner {
     public void day05() {
         Day05 day = new Day05();
         
-        List<Integer> programm = day.parseIntergerLines(day.splitLine(day.loadLines("data/day05.txt").get(0)));
+        String line = day.loadLines("data/day05.txt").get(0);
         
-        int result1 = day.processProgramm(programm, 1, false, false);
+        int result1 = day.processProgramm(line, 1, false, false);
         
         System.out.println("day05 result 1 " + result1);
         
-        List<Integer> programm2 = day.parseIntergerLines(day.splitLine(day.loadLines("data/day05.txt").get(0)));
-        
-        int result2 = day.processProgramm(programm2, 5, false, false);
+        int result2 = day.processProgramm(line, 5, false, false);
         
         System.out.println("day05 result 2 " + result2);
     }
