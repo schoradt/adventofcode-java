@@ -6,6 +6,8 @@
 package de.schoradt.adventofcode2019;
 
 import de.schoradt.adventofcode2019.graph.Path;
+import de.schoradt.adventofcode2019.graph.Tree;
+
 import java.util.List;
 
 /**
@@ -25,6 +27,7 @@ public class Runner {
         runner.day03();
         runner.day04();
         runner.day05();
+        runner.day06();
     }
     
     public void day01() {
@@ -104,6 +107,22 @@ public class Runner {
         int result2 = day.processProgramm(programm2, 5, false, false);
         
         System.out.println("day05 result 2 " + result2);
+    }
+    
+    public void day06() {
+        Day06 day = new Day06();
+        
+        List<String> map = day.loadLines("data/day06.txt");
+        
+        Tree tree = day.createTree(map);
+        
+        int result1 = day.computeOrbitCountChecksums(tree);
+        
+        System.out.println("day06 result 1 " + result1);
+        
+        int result2 = day.moveToSanta(tree);
+        
+        System.out.println("day06 result 2 " + result2);
     }
     
 }

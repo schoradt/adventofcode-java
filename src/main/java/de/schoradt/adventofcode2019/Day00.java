@@ -5,11 +5,8 @@
  */
 package de.schoradt.adventofcode2019;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -30,6 +27,18 @@ public class Day00 {
             }
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Day00.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return list;
+    }
+    
+    public List<String> loadLinesString(String content) {
+        List<String> list = new ArrayList<>();
+        
+        try (Scanner s = new Scanner(content)) {
+            while (s.hasNext()){
+                list.add(s.next());
+            }
         }
 
         return list;
