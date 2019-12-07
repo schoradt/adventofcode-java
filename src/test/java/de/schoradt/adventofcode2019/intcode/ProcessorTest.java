@@ -51,7 +51,7 @@ public class ProcessorTest {
         Processor processor = new Processor();
         
         processor.loadProgram(line);
-        processor.setInput(inputValue);
+        processor.addInput(inputValue);
         
         assertEquals(should, processor.process());
     }

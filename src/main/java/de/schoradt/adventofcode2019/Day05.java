@@ -17,7 +17,7 @@ public class Day05 extends Day00 {
         Processor processor = new Processor();
         
         processor.loadProgram(input);
-        processor.setInput(inValue);
+        processor.addInput(inValue);
         
         processor.setOutput(output);
         processor.setDebug(debug);

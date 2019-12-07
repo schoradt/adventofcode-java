@@ -16,6 +16,7 @@
 package de.schoradt.adventofcode2019.intcode;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -30,11 +31,13 @@ public class Processor {
     private boolean output = false;
     private boolean debug = false;
     
-    private Integer inputValue = 0;
+    private LinkedList<Integer> inputValues;
     private Integer outputValue = null;
     
     public Processor() {
         memory = new ArrayList<>();
+        
+        inputValues = new LinkedList<>();
     }
 
     public void loadProgram(String program) {
@@ -53,8 +56,8 @@ public class Processor {
         this.debug = debug;
     }
 
-    public void setInput(int input) {
-        this.inputValue = input;
+    public void addInput(int input) {
+        this.inputValues.add(input);
     }
     
     public void init(int noun, int verb) {
@@ -189,7 +192,7 @@ public class Processor {
     private void input() {
         int outIndex = getIndex(1);
 
-        setValue(outIndex, inputValue);
+        setValue(outIndex, inputValues.pollFirst());
         
         pc += 2;
     }
