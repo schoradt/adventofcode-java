@@ -31,6 +31,8 @@ public class Processor {
     private boolean output = false;
     private boolean debug = false;
     
+    private boolean run = false;
+    
     private LinkedList<Integer> inputValues;
     private Integer outputValue = null;
     
@@ -64,8 +66,26 @@ public class Processor {
         memory.set(1, noun);
         memory.set(2, verb);
     }
+
+    public boolean isRun() {
+        return run;
+    }
     
     public int process() {
+        run = true;
+        
+        int value = 0;
+        
+        while (run) {
+            value = processToNextOutput();
+        }
+        
+        return value;
+    }
+    
+    public int processToNextOutput() {
+        run = true;
+        
         while(true) {
             
             debug();
@@ -87,10 +107,8 @@ public class Processor {
                     break;
 
                 case 4:
-                    output();
+                    return output();
                     
-                    break;
-
                 case 5:
                     jumpIfTrue();
                     
@@ -197,7 +215,7 @@ public class Processor {
         pc += 2;
     }
     
-    private void output() {
+    private int output() {
         int value = getValue(1);
 
         if (output) {
@@ -207,6 +225,8 @@ public class Processor {
         outputValue = value;
 
         pc += 2;
+        
+        return value;
     }
     
     private void jumpIfTrue() {
@@ -266,6 +286,8 @@ public class Processor {
             System.out.println(" FINISH");
         }
 
+        run = false;
+        
         if (outputValue == null) {
             return memory.get(0);
         }

@@ -128,9 +128,9 @@ public class Runner {
         
         System.out.println("day07 result 1 " + result1);
         
-        //int result2 = day.moveToSanta(tree);
+        int result2 = day.hackAmplifierChainFeedbackLoop(line);
         
-        //System.out.println("day06 result 2 " + result2);
+        System.out.println("day07 result 2 " + result2);
     }
     
 }
