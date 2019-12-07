@@ -28,6 +28,7 @@ public class Runner {
         runner.day04();
         runner.day05();
         runner.day06();
+        runner.day07();
     }
     
     public void day01() {
@@ -116,6 +117,20 @@ public class Runner {
         int result2 = day.moveToSanta(tree);
         
         System.out.println("day06 result 2 " + result2);
+    }
+    
+    public void day07() {
+        Day07 day = new Day07();
+        
+        String line = day.loadLines("data/day07.txt").get(0);
+        
+        int result1 = day.hackAmplifierChain(line);
+        
+        System.out.println("day07 result 1 " + result1);
+        
+        //int result2 = day.moveToSanta(tree);
+        
+        //System.out.println("day06 result 2 " + result2);
     }
     
 }
