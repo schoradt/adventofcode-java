@@ -29,6 +29,7 @@ public class Runner {
         runner.day05();
         runner.day06();
         runner.day07();
+        runner.day08();
     }
     
     public void day01() {
@@ -131,6 +132,20 @@ public class Runner {
         int result2 = day.hackAmplifierChainFeedbackLoop(line);
         
         System.out.println("day07 result 2 " + result2);
+    }
+
+    private void day08() {
+        Day08 day = new Day08();
+        
+        String line = day.loadLines("data/day08.txt").get(0);
+        
+        int result1 = day.processImageChecksum(25, 6, line);
+        
+        System.out.println("day08 result 1 " + result1);
+        
+        System.out.println("day07 result 2 ");
+        
+        day.printImage(25, 6, line);
     }
     
 }
