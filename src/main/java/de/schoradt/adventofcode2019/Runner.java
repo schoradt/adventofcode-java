@@ -30,6 +30,7 @@ public class Runner {
         runner.day06();
         runner.day07();
         runner.day08();
+        runner.day09();
     }
     
     public void day01() {
@@ -146,6 +147,20 @@ public class Runner {
         System.out.println("day07 result 2 ");
         
         day.printImage(25, 6, line);
+    }
+    
+    private void day09() {
+        Day09 day = new Day09();
+        
+        String line = day.loadLines("data/day09.txt").get(0);
+        
+        long result1 = day.processTest(line);
+        
+        System.out.println("day09 result 1 " + result1);
+        
+        long result2 = day.processBoost(line);
+        
+        System.out.println("day09 result 2 " + result2);
     }
     
 }

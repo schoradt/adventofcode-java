@@ -6,6 +6,7 @@
 package de.schoradt.adventofcode2019;
 
 import de.schoradt.adventofcode2019.intcode.Processor;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -94,7 +95,7 @@ public class Day07 extends Day00 {
         
         Processor processor;
         
-        int value = 0;
+        long value = 0;
         
         int i = 1;
         
@@ -111,7 +112,7 @@ public class Day07 extends Day00 {
             i++;
         }
         
-        return value;
+        return Long.valueOf(value).intValue();
     }
     
     public int amplifierChainFeedbackLoop(String input, List<Integer> settings) {
@@ -131,7 +132,7 @@ public class Day07 extends Day00 {
         
         boolean stopMode = false;
         
-        int value = 0;
+        long value = 0;
         
         int i = 0;
         
@@ -141,7 +142,7 @@ public class Day07 extends Day00 {
             Processor processor = processors.pollFirst();
             
             if (stopMode && !processor.isRun()) {
-                return value;
+                return Long.valueOf(value).intValue();
             }
             
             processor.addInput(value);

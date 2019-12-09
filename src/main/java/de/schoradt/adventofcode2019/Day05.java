@@ -22,6 +22,6 @@ public class Day05 extends Day00 {
         processor.setOutput(output);
         processor.setDebug(debug);
         
-        return processor.process();
+        return Long.valueOf(processor.process()).intValue();
     }
 }

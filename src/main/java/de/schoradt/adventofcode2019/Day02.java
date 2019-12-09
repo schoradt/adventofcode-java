@@ -20,7 +20,7 @@ public class Day02 extends Day00 {
         
         processor.init(noun, verb);
         
-        return processor.process();
+        return Long.valueOf(processor.process()).intValue();
     }
     
     public int hackNounVerb(String line, int result) {

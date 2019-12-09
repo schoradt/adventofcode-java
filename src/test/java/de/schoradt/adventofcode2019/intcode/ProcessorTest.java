@@ -17,8 +17,11 @@ package de.schoradt.adventofcode2019.intcode;
 
 import static org.junit.Assert.assertEquals;
 
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+
+import java.util.stream.Collectors;
 
 
 /**
@@ -45,15 +48,32 @@ public class ProcessorTest {
             "999,1105,1,46,1101,1000,1,20,4,20,1105,1,46,98,99', 8, 1000",
         "'3,21,1008,21,8,20,1005,20,22,107,8,21,20,1006,20,31," +
             "1106,0,36,98,0,0,1002,21,125,20,4,20,1105,1,46,104," +
-            "999,1105,1,46,1101,1000,1,20,4,20,1105,1,46,98,99', 12, 1001"
+            "999,1105,1,46,1101,1000,1,20,4,20,1105,1,46,98,99', 12, 1001",
+        "'104,1125899906842624,99', 0, 1125899906842624",
+        "'1102,34915192,34915192,7,4,7,99,0', 0, 1219070632396864"
     })
-    public void testProcessProgramm(String line, int inputValue, int should) {
+    public void testProcessProgramm(String line, long inputValue, long should) {
         Processor processor = new Processor();
         
         processor.loadProgram(line);
         processor.addInput(inputValue);
         
         assertEquals(should, processor.process());
+    }
+    
+    @Test
+    public void testAmplifierChainFeedbackLoop() {
+        Processor processor = new Processor();
+        
+        String programm = "109,1,204,-1,1001,100,1,100,1008,100,16,101,1006,101,0,99";
+        
+        processor.loadProgram(programm);
+        
+        processor.process();
+        
+        String numberString = processor.getOutputValues().stream().map(String::valueOf).collect(Collectors.joining(","));
+        
+        assertEquals(programm, numberString);
     }
     
 }

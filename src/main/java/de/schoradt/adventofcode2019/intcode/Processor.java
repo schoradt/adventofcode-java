@@ -24,29 +24,66 @@ import java.util.List;
  * @author Sven Schoradt (s.schoradt@infotec-edv.de)
  */
 public class Processor {
-    private final List<Integer> memory;
+    private class UnlimitedArrayList<T extends Object> extends ArrayList<T> {        
+        private static final long serialVersionUID = 1L;
+        
+        T defaultValue;
+
+        public UnlimitedArrayList(T defaultValue) {
+            this.defaultValue = defaultValue;
+        }
+       
+        @Override
+        public T get(int index) {
+            if (index >= this.size()) {
+                for(int i = this.size(); i <= index; i++) {
+                    this.add(defaultValue);
+                }
+            }
+            
+            return super.get(index);
+        }
+        
+        @Override
+        public T set(int index, T value) {
+            if (index >= this.size()) {
+                for(int i = this.size(); i <= index; i++) {
+                    this.add(defaultValue);
+                }
+            }
+            
+            return super.set(index, value);
+        }
+    }
+    
+    private final List<Long> memory;
     
     int pc = 0;
+    
+    int relativeBase = 0;
     
     private boolean output = false;
     private boolean debug = false;
     
     private boolean run = false;
     
-    private LinkedList<Integer> inputValues;
-    private Integer outputValue = null;
+    private final LinkedList<Long> inputValues;
+    private final LinkedList<Long> outputValues;
+    
+    private Long outputValue = null;
     
     public Processor() {
-        memory = new ArrayList<>();
+        memory = new UnlimitedArrayList<>(0L);
         
         inputValues = new LinkedList<>();
+        outputValues = new LinkedList<>();
     }
 
     public void loadProgram(String program) {
         memory.clear();
         
         for(String command: program.split(",")) {
-            memory.add(Integer.parseInt(command));
+            memory.add(Long.parseLong(command));
         }
     }
 
@@ -54,15 +91,19 @@ public class Processor {
         this.output = output;
     }
 
+    public LinkedList<Long> getOutputValues() {
+        return outputValues;
+    }
+
     public void setDebug(boolean debug) {
         this.debug = debug;
     }
 
-    public void addInput(int input) {
+    public void addInput(long input) {
         this.inputValues.add(input);
     }
     
-    public void init(int noun, int verb) {
+    public void init(long noun, long verb) {
         memory.set(1, noun);
         memory.set(2, verb);
     }
@@ -71,10 +112,10 @@ public class Processor {
         return run;
     }
     
-    public int process() {
+    public long process() {
         run = true;
         
-        int value = 0;
+        long value = 0;
         
         while (run) {
             value = processToNextOutput();
@@ -83,7 +124,7 @@ public class Processor {
         return value;
     }
     
-    public int processToNextOutput() {
+    public long processToNextOutput() {
         run = true;
         
         while(true) {
@@ -125,6 +166,11 @@ public class Processor {
                     setIfEqual();
                     
                     break;
+                case 9:
+                    setRelativeBase();
+                    
+                    break;
+                   
                 case 99:
                     return stop();
                     
@@ -139,17 +185,48 @@ public class Processor {
     }
     
     private int getCommand() {
-        int command = memory.get(pc);
+        long command = memory.get(pc);
             
-        int cmd = command % 100;
+        Long cmd = command % 100;
         
-        return cmd;
+        return cmd.intValue();
     }
     
-    private int getValue(int number) {
-        int mode = 0;
+    private long getValue(int number) {
+        long mode = 0;
         
-        int cmd = memory.get(pc);
+        long cmd = memory.get(pc);
+        cmd = cmd / 100;
+        
+        long value;
+        
+        for (int i = number; i > 1 && cmd > 0; i--) {
+            cmd = cmd / 10;
+        }
+        
+        if (cmd > 0) {
+            mode = cmd % 10;
+        }
+        
+        if (mode == 1) {
+            value = memory.get(pc + number);
+        } else if (mode == 2) {
+            int shift = memory.get(pc + number).intValue();
+            
+            value = memory.get(relativeBase + shift);
+        } else {
+            Long index = memory.get(pc + number);
+            
+            value = memory.get(index.intValue());
+        }
+        
+        return value;
+    }
+    
+    private int getIndex(int number) {
+        long mode = 0;
+        
+        long cmd = memory.get(pc);
         cmd = cmd / 100;
         
         int value;
@@ -162,32 +239,28 @@ public class Processor {
             mode = cmd % 10;
         }
         
-        if (mode == 0) {
-            int index = memory.get(pc + number);
+        if (mode == 2) {
+            int shift = memory.get(pc + number).intValue();
             
-            value = memory.get(index);
+            value = relativeBase + shift;
         } else {
-            value = memory.get(pc + number);
+            value = memory.get(pc + number).intValue();
         }
         
         return value;
     }
     
-    private int getIndex(int number) {
-        return memory.get(pc + number);
-    }
-    
-    private void setValue(int index, int value) {
+    private void setValue(int index, long value) {
         memory.set(index, value);
     }
     
     private void add() {
-        int value1 = getValue(1);
-        int value2 = getValue(2);
+        long value1 = getValue(1);
+        long value2 = getValue(2);
 
         int outIndex = getIndex(3);
 
-        int value = value1 + value2;
+        long value = value1 + value2;
 
         setValue(outIndex, value);
         
@@ -195,12 +268,12 @@ public class Processor {
     }
     
     private void mult() {
-        int value1 = getValue(1);
-        int value2 = getValue(2);
+        long value1 = getValue(1);
+        long value2 = getValue(2);
 
         int outIndex = getIndex(3);
 
-        int value = value1 * value2;
+        long value = value1 * value2;
 
         setValue(outIndex, value);
         
@@ -215,13 +288,15 @@ public class Processor {
         pc += 2;
     }
     
-    private int output() {
-        int value = getValue(1);
+    private long output() {
+        long value = getValue(1);
 
         if (output) {
             System.out.print(" " + value);
         }
 
+        outputValues.add(value);
+        
         outputValue = value;
 
         pc += 2;
@@ -230,30 +305,30 @@ public class Processor {
     }
     
     private void jumpIfTrue() {
-        int value1 = getValue(1);
-        int value2 = getValue(2);
+        long value1 = getValue(1);
+        long value2 = getValue(2);
 
         if (value1 != 0) {
-            pc = value2;
+            pc = Long.valueOf(value2).intValue();
         } else {
             pc += 3;
         }
     }
     
     private void jumpIfFalse() {
-        int value1 = getValue(1);
-        int value2 = getValue(2);
+        long value1 = getValue(1);
+        long value2 = getValue(2);
 
         if (value1 == 0) {
-            pc = value2;
+            pc = Long.valueOf(value2).intValue();
         } else {
             pc += 3;
         }
     }
     
     private void setIfLower() {
-        int value1 = getValue(1);
-        int value2 = getValue(2);
+        long value1 = getValue(1);
+        long value2 = getValue(2);
 
         int outIndex = getIndex(3);
 
@@ -267,8 +342,8 @@ public class Processor {
     }
     
     private void setIfEqual() {
-        int value1 = getValue(1);
-        int value2 = getValue(2);
+        long value1 = getValue(1);
+        long value2 = getValue(2);
 
         int outIndex = getIndex(3);
 
@@ -281,7 +356,15 @@ public class Processor {
         pc += 4;
     }
     
-    private int stop() {
+    private void setRelativeBase() {
+        long value = getValue(1);
+        
+        this.relativeBase += Long.valueOf(value).intValue();
+        
+        pc += 2;
+    }
+    
+    private long stop() {
         if (output) {
             System.out.println(" FINISH");
         }
@@ -304,7 +387,7 @@ public class Processor {
         
         int index = 0;
         
-        for (Integer item: memory) {
+        for (Long item: memory) {
             if (index > 0) {
                 System.out.print(",");
             }

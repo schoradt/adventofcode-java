@@ -5,10 +5,12 @@
  */
 package de.schoradt.adventofcode2019;
 
+import static org.junit.Assert.*;
+
+import org.junit.jupiter.api.Test;
+
 import java.util.ArrayList;
 import java.util.List;
-import org.junit.jupiter.api.Test;
-import static org.junit.Assert.*;
 
 /**
  *
@@ -33,8 +35,6 @@ public class Day07Test {
         assertEquals(18216, day.amplifierChainFeedbackLoop("3,52,1001,52,-5,52,3,53,1,52,56,54,1007,54,5,55,1005,55,26,1001,54,-5,54,1105,1,12,1,53,54,53,1008,54,0,55,1001,55,1,55,2,53,55,53,4,53,1001,56,-1,56,1005,56,6,99,0,0,0,0,10", createSettings(9, 7, 8, 5, 6)));
         
     }
-    
-    
     
     private List<Integer> createSettings(int s1, int s2, int s3, int s4, int s5) {
         List<Integer> settings = new ArrayList<>();
