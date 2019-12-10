@@ -31,6 +31,7 @@ public class Runner {
         runner.day07();
         runner.day08();
         runner.day09();
+        runner.day10();
     }
     
     public void day01() {
@@ -161,6 +162,20 @@ public class Runner {
         long result2 = day.processBoost(line);
         
         System.out.println("day09 result 2 " + result2);
+    }
+    
+    private void day10() {
+        Day10 day = new Day10();
+        
+        List<String> lines = day.loadLines("data/day10.txt");
+        
+        int result1 = day.bestAstroidViewCount(lines);
+        
+        System.out.println("day09 result 1 " + result1);
+        
+        //long result2 = day.processBoost(lines);
+        
+        //System.out.println("day09 result 2 " + result2);
     }
     
 }
