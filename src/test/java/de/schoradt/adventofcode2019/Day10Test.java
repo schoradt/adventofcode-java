@@ -64,4 +64,75 @@ public class Day10Test {
         Assert.assertEquals(33, day.bestAstroidViewCount(lines));
     }
     
+    @Test
+    public void testBestAstroidViewCount3() {
+        Day10 day = new Day10();
+        
+        String rasterString = "#.#...#.#.\n" +
+            ".###....#.\n" +
+            ".#....#...\n" +
+            "##.#.#.#.#\n" +
+            "....#.#.#.\n" +
+            ".##..###.#\n" +
+            "..#...##..\n" +
+            "..##....##\n" +
+            "......#...\n" +
+            ".####.###.";
+        
+        List<String> lines = day.loadLinesString(rasterString);
+        
+        Assert.assertEquals(35, day.bestAstroidViewCount(lines));
+    }
+    
+    @Test
+    public void testBestAstroidViewCount4() {
+        Day10 day = new Day10();
+        
+        String rasterString = ".#..#..###\n" +
+"####.###.#\n" +
+"....###.#.\n" +
+"..###.##.#\n" +
+"##.##.#.#.\n" +
+"....###..#\n" +
+"..#.#..#.#\n" +
+"#..#.#.###\n" +
+".##...##.#\n" +
+".....#.#..";
+        
+        List<String> lines = day.loadLinesString(rasterString);
+        
+        Assert.assertEquals(41, day.bestAstroidViewCount(lines));
+    }
+    
+    @Test
+    public void testBestAstroidViewCount5() {
+        Day10 day = new Day10();
+        
+        String rasterString = ".#..##.###...#######\n" +
+"##.############..##.\n" +
+".#.######.########.#\n" +
+".###.#######.####.#.\n" +
+"#####.##.#.##.###.##\n" +
+"..#####..#.#########\n" +
+"####################\n" +
+"#.####....###.#.#.##\n" +
+"##.#################\n" +
+"#####.##.###..####..\n" +
+"..######..##.#######\n" +
+"####.##.####...##..#\n" +
+".#####..#.######.###\n" +
+"##...#.##########...\n" +
+"#.##########.#######\n" +
+".####.#.###.###.#.##\n" +
+"....##.##.###..#####\n" +
+".#.#.###########.###\n" +
+"#.#.#.#####.####.###\n" +
+"###.##.####.##.#..##";
+        
+        List<String> lines = day.loadLinesString(rasterString);
+        
+        Assert.assertEquals(210, day.bestAstroidViewCount(lines));
+    }
+    
+    
 }

@@ -17,6 +17,7 @@ package de.schoradt.adventofcode2019.data;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  *
@@ -87,7 +88,7 @@ public class Raster <T> {
     }
     
     public boolean isViewable(int x1, int y1, int x2, int y2) {
-        System.out.println("test (" + x1 + ", " + y1 + ") (" + x2 + ", " + y2 + ")"  );
+        //System.out.println("test (" + x1 + ", " + y1 + ") (" + x2 + ", " + y2 + ")"  );
         
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
@@ -98,26 +99,23 @@ public class Raster <T> {
                         float fy1 = y1;
                         float fy2 = y2;
 
-                        Float f;
+                        Float t1 = (i - fx1) / (fx2 - fx1);
+                        Float t2 = (j - fy1) / (fy2 - fy1);
                         
-                        if (fx1 == fx2) {
-                            if (fx1 == i && (distance(x1, y1, x2, y2) > distance(x1, y1, i, j))) {
-                                System.out.println("    blocked by (" + i + ", " + j + ") ");
-
-                                return false;
-                            } else {
-                                //System.out.println("    not blocked by (" + i + ", " + j + ") ");
-                            }
-                        } else {
-                            f = ((fy2 - fy1) / (fx2 - fx1)) * i + (fy1 - ((fy2 - fy1) / (fx2 - fx1)) * fx1);
+                        if (Objects.equals(t1, Float.NaN)) {
+                            t1 = t2;
+                        }
+                        
+                        if (Objects.equals(t2, Float.NaN)) {
+                            t2 = t1;
+                        }
+                        
+                        if (Objects.equals(t1, t2) && t1 > 0 && t1 < 1) {
+                            //System.out.println("    blocked by (" + i + ", " + j + ") "  + t1 + " <> " + t2);
                             
-                            if (f == j && (distance(x1, y1, x2, y2) > distance(x1, y1, i, j))) {
-                                System.out.println("    blocked by (" + i + ", " + j + ") "  + f + " <> " + j);
-
-                                return false;
-                            } else {
-                                //System.out.println("    not blocked by (" + i + ", " + j + ") "  + f + " <> " + j);
-                            }
+                            return false;
+                        } else {
+                            //System.out.println("    not blocked by (" + i + ", " + j + ") "  + t1 + " <> " + t2);
                         }
                     }
                 }
@@ -129,5 +127,17 @@ public class Raster <T> {
     
     private double distance(int x1, int y1, int x2, int y2) {
         return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+    }
+
+    public boolean empty() {
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
+                if (this.get(i, j) != null) {
+                    return false;
+                }
+            }
+        }
+        
+        return true;
     }
 }

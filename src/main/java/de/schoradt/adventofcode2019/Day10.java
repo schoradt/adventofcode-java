@@ -15,6 +15,7 @@
  */
 package de.schoradt.adventofcode2019;
 
+import de.schoradt.adventofcode2019.data.Pair;
 import de.schoradt.adventofcode2019.data.Raster;
 
 import java.util.List;
@@ -50,14 +51,14 @@ public class Day10 extends Day00 {
         
         Raster<Location> raster = createRaster(lines);
         
-        raster.print();
+        //raster.print();
         
         for (int i = 0; i < raster.getWidth(); i++) {
             for (int j = 0; j < raster.getHeight(); j++) {
                 if (raster.get(i, j) != null) {
                     int views = computeViews(raster, i, j);
                     
-                    System.out.println("views (" + i + ", " + j + ") " + views);
+                    //System.out.println("views (" + i + ", " + j + ") " + views);
                     
                     count = Math.max(views, count);
                 }
@@ -66,6 +67,56 @@ public class Day10 extends Day00 {
         
         return count;
     }
+    
+    public int lastAstroidDestroid(List<String> lines) {
+        int count = Integer.MIN_VALUE;
+        
+        Pair<Integer, Integer> point = new Pair(0, 0);
+        
+        Raster<Location> raster = createRaster(lines);
+        
+        //raster.print();
+        
+        for (int i = 0; i < raster.getWidth(); i++) {
+            for (int j = 0; j < raster.getHeight(); j++) {
+                if (raster.get(i, j) != null) {
+                    int views = computeViews(raster, i, j);
+                    
+                    //System.out.println("views (" + i + ", " + j + ") " + views);
+                    
+                    if (views > count) {
+                        count = views;
+                        
+                        point.setLeft(i);
+                        point.setRight(j);
+                    }
+                }
+            }
+        }
+        
+        // destroi
+        int x = point.getLeft();
+        int y = point.getRight();
+        
+        while(!raster.empty()) {
+            for (int i = 0; i < raster.getWidth(); i++) {
+                for (int j = 0; j < raster.getHeight(); j++) {
+                    if (raster.get(i, j) != null && !(i == x && j == y)) {
+                        if (raster.isViewable(x, y, i, j)) {
+                            raster.set(i, j, null);
+
+                            point.setLeft(i);
+                            point.setRight(j);
+                        };
+                    }
+                }
+            }
+        }
+        
+        return point.getLeft() * 100 + point.getRight();
+    }
+    
+    
     
     private int computeViews(Raster<Location> raster, int x, int y) {
         int views = 0;

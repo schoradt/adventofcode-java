@@ -14,8 +14,8 @@ package de.schoradt.adventofcode2019.data;
  * @param <T2> Type 2
  */
 public class Pair<T1, T2> {
-    private final T1 value1;
-    private final T2 value2;
+    private T1 value1;
+    private T2 value2;
 
     public Pair(T1 value1, T2 value2) {
         this.value1 = value1;
@@ -37,4 +37,13 @@ public class Pair<T1, T2> {
     public T2 getRight() {
         return value2;
     }
+    
+    public void setLeft(T1 value) {
+        value1 = value;
+    }
+    
+    public void setRight(T2 value) {
+        value2 = value;
+    }
+    
 }
