@@ -44,7 +44,7 @@ public class Runner {
     public void day01() {
         Day01 day = new Day01();
 
-        List<Integer> masses = day.parseIntergerLines(day.loadLines("data/day01.txt"));
+        List<Integer> masses = day.parseIntergerLines(day.loadLines("data/2019/day01.txt"));
 
         int result1 = day.sumFuels(masses);
 
@@ -58,7 +58,7 @@ public class Runner {
     public void day02() {
         Day02 day = new Day02();
 
-        String line = day.loadLines("data/day02.txt").get(0);
+        String line = day.loadLines("data/2019/day02.txt").get(0);
 
         int result1 = day.processProgramm(line, 12, 2);
 
@@ -72,7 +72,7 @@ public class Runner {
     public void day03() {
         Day03 day = new Day03();
 
-        List<String> lines = day.loadLines("data/day03.txt");
+        List<String> lines = day.loadLines("data/2019/day03.txt");
 
         Path p1 = new Path(day.splitLine(lines.get(0)));
         Path p2 = new Path(day.splitLine(lines.get(1)));
@@ -102,7 +102,7 @@ public class Runner {
     public void day05() {
         Day05 day = new Day05();
 
-        String line = day.loadLines("data/day05.txt").get(0);
+        String line = day.loadLines("data/2019/day05.txt").get(0);
 
         int result1 = day.processProgramm(line, 1, false, false);
 
@@ -116,7 +116,7 @@ public class Runner {
     public void day06() {
         Day06 day = new Day06();
 
-        List<String> map = day.loadLines("data/day06.txt");
+        List<String> map = day.loadLines("data/2019/day06.txt");
 
         Tree tree = day.createTree(map);
 
@@ -132,7 +132,7 @@ public class Runner {
     public void day07() {
         Day07 day = new Day07();
 
-        String line = day.loadLines("data/day07.txt").get(0);
+        String line = day.loadLines("data/2019/day07.txt").get(0);
 
         int result1 = day.hackAmplifierChain(line);
 
@@ -146,7 +146,7 @@ public class Runner {
     private void day08() {
         Day08 day = new Day08();
 
-        String line = day.loadLines("data/day08.txt").get(0);
+        String line = day.loadLines("data/2019/day08.txt").get(0);
 
         int result1 = day.processImageChecksum(25, 6, line);
 
@@ -160,7 +160,7 @@ public class Runner {
     private void day09() {
         Day09 day = new Day09();
 
-        String line = day.loadLines("data/day09.txt").get(0);
+        String line = day.loadLines("data/2019/day09.txt").get(0);
 
         long result1 = day.processTest(line);
 
@@ -174,7 +174,7 @@ public class Runner {
     private void day10() {
         Day10 day = new Day10();
 
-        List<String> lines = day.loadLines("data/day10.txt");
+        List<String> lines = day.loadLines("data/2019/day10.txt");
 
         int result1 = day.bestAstroidViewCount(lines);
 
