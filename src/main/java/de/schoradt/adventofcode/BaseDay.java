@@ -24,7 +24,7 @@ public class BaseDay {
 
         try (Scanner s = new Scanner(new File(filename))) {
             while (s.hasNext()){
-                list.add(s.next());
+                list.add(s.nextLine());
             }
         } catch (FileNotFoundException ex) {
             Logger.getLogger(BaseDay.class.getName()).log(Level.SEVERE, null, ex);
@@ -38,7 +38,7 @@ public class BaseDay {
 
         try (Scanner s = new Scanner(content)) {
             while (s.hasNext()){
-                list.add(s.next());
+                list.add(s.nextLine());
             }
         }
 
@@ -49,7 +49,11 @@ public class BaseDay {
         List<Integer> list = new ArrayList<>();
 
         for(String integer: integers) {
-            list.add(Integer.parseInt(integer));
+            if (integer.equals("")) {
+                list.add(null);
+            } else {
+                list.add(Integer.parseInt(integer));
+            }
         }
 
         return list;

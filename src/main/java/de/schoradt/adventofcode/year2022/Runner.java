@@ -5,6 +5,8 @@
  */
 package de.schoradt.adventofcode.year2022;
 
+import java.util.List;
+
 /**
  *
  * @author schoradt
@@ -28,17 +30,17 @@ public class Runner {
     }
 
     public void day01() {
-//        Day01 day = new Day01();
-//
-//        List<Integer> masses = day.parseIntergerLines(day.loadLines("data/day01.txt"));
-//
-//        int result1 = day.sumFuels(masses);
-//
-//        System.out.println("day01 result 1 " + result1);
-//
-//        int result2 = day.sumAllFuels(masses);
-//
-//        System.out.println("day01 result 2 " + result2);
+        Day01 day = new Day01();
+
+        List<Integer> calories = day.parseIntergerLines(day.loadLines("data/2022/day01.txt"));
+
+        int result1 = day.mostCalories(calories);
+
+        System.out.println("day01 result 1 " + result1);
+
+        int result2 = day.threeMostCalories(calories);
+
+        System.out.println("day01 result 2 " + result2);
     }
 
 }
