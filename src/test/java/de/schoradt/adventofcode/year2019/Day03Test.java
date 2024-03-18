@@ -5,7 +5,7 @@
  */
 package de.schoradt.adventofcode.year2019;
 
-import de.schoradt.adventofcode.year2019.data.Pair;
+import de.schoradt.adventofcode.util.Pair;
 import de.schoradt.adventofcode.year2019.graph.Path;
 import de.schoradt.adventofcode.year2019.graph.Point;
 import java.util.List;

@@ -5,6 +5,8 @@
  */
 package de.schoradt.adventofcode.year2022;
 
+import de.schoradt.adventofcode.util.Pair;
+
 import java.util.List;
 
 /**
@@ -24,6 +26,7 @@ public class Runner {
         Runner runner = new Runner();
 
         runner.day01();
+        runner.day02();
 
         System.out.println();
         System.out.println();
@@ -41,6 +44,23 @@ public class Runner {
         int result2 = day.threeMostCalories(calories);
 
         System.out.println("day01 result 2 " + result2);
+    }
+
+    public void day02() {
+        Day02 day = new Day02();
+
+        List<Pair<String, String>> parsed = day.loadLines("data/2022/day02.txt").stream()
+            .map(line -> line.split("\\s+"))
+            .map(array -> Pair.<String, String>builder().left(array[0]).right(array[1]).build())
+            .toList();
+
+        int result1 = day.computeScoreByGame(parsed);
+
+        System.out.println("day02 result 1 " + result1);
+
+        int result2 = day.computeScore2(parsed);
+
+        System.out.println("day02 result 2 " + result2);
     }
 
 }

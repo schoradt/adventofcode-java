@@ -6,7 +6,7 @@
 package de.schoradt.adventofcode.year2019;
 
 import de.schoradt.adventofcode.BaseDay;
-import de.schoradt.adventofcode.year2019.data.Pair;
+import de.schoradt.adventofcode.util.Pair;
 import de.schoradt.adventofcode.year2019.graph.Tree;
 import de.schoradt.adventofcode.year2019.graph.Tree.TreeNode;
 
@@ -25,13 +25,13 @@ public class Day06 extends BaseDay {
 
             //System.out.println("ADD " + parsed.getValue1() + " -> " + parsed.getValue2());
 
-            TreeNode left = tree.getNode(parsed.getValue1());
+            TreeNode left = tree.getNode(parsed.getLeft());
 
             if (tree.getRoot() == null) {
                 tree.setRoot(left);
             }
 
-            TreeNode right = tree.getNode(parsed.getValue2());
+            TreeNode right = tree.getNode(parsed.getRight());
 
             left.addChild(right);
         }

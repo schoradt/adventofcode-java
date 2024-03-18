@@ -5,7 +5,8 @@
  */
 package de.schoradt.adventofcode.year2019.graph;
 
-import de.schoradt.adventofcode.year2019.data.Pair;
+import de.schoradt.adventofcode.util.Pair;
+import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,6 +19,7 @@ import java.util.Map;
  */
 public class Path {
 
+    @Getter
     List<Point> points;
 
     Map<Point, Integer> checkMap;
@@ -54,10 +56,6 @@ public class Path {
         Point internal = new Point(p.getX(), p.getY());
 
         points.add(internal);
-    }
-
-    public List<Point> getPoints() {
-        return points;
     }
 
     public boolean isOn(Point p) {

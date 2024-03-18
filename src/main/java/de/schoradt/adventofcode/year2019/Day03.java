@@ -6,7 +6,7 @@
 package de.schoradt.adventofcode.year2019;
 
 import de.schoradt.adventofcode.BaseDay;
-import de.schoradt.adventofcode.year2019.data.Pair;
+import de.schoradt.adventofcode.util.Pair;
 import de.schoradt.adventofcode.year2019.graph.Path;
 import de.schoradt.adventofcode.year2019.graph.Point;
 
@@ -41,7 +41,7 @@ class Day03 extends BaseDay {
         int distance = Integer.MAX_VALUE;
 
         for (Pair<Integer, Integer> p: crosses) {
-            distance = Math.min(distance, p.getValue1()+ p.getValue2());
+            distance = Math.min(distance, p.getLeft()+ p.getRight());
         }
 
         return distance;
