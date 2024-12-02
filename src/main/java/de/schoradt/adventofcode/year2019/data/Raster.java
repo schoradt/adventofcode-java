@@ -15,6 +15,8 @@
  */
 package de.schoradt.adventofcode.year2019.data;
 
+import lombok.Getter;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -25,7 +27,9 @@ import java.util.Objects;
  * @param <T>
  */
 public class Raster <T> {
+    @Getter
     int width;
+    @Getter
     int height;
 
     private final List<List<T>> data;
@@ -53,40 +57,6 @@ public class Raster <T> {
         data.get(x).set(y, value);
     }
 
-    public int getWidth() {
-        return width;
-    }
-
-    public int getHeight() {
-        return height;
-    }
-
-    public void print() {
-        for (int i = 0; i < height; i++) {
-            for (int j = 0; j < width; j++) {
-                if (this.get(j, i) != null) {
-                    System.out.println("(" + j + ", " + i + ") #");
-                }
-            }
-        }
-
-        System.out.println();
-
-        for (int i = 0; i < height; i++) {
-            for (int j = 0; j < width; j++) {
-                if (this.get(j, i) != null) {
-                    System.out.print('#');
-                } else {
-                    System.out.print('.');
-                }
-            }
-
-            System.out.println();
-        }
-
-        System.out.println();
-    }
-
     public boolean isViewable(int x1, int y1, int x2, int y2) {
         //System.out.println("test (" + x1 + ", " + y1 + ") (" + x2 + ", " + y2 + ")"  );
 
@@ -94,13 +64,8 @@ public class Raster <T> {
             for (int j = 0; j < height; j++) {
                 if (!((x1 == i && y1 == j) || (x2 == i && y2 == j))) {
                     if (this.get(i, j) != null) {
-                        float fx1 = x1;
-                        float fx2 = x2;
-                        float fy1 = y1;
-                        float fy2 = y2;
-
-                        Float t1 = (i - fx1) / (fx2 - fx1);
-                        Float t2 = (j - fy1) / (fy2 - fy1);
+                        float t1 = (i - (float) x1) / ((float) x2 - (float) x1);
+                        float t2 = (j - (float) y1) / ((float) y2 - (float) y1);
 
                         if (Objects.equals(t1, Float.NaN)) {
                             t1 = t2;
@@ -111,29 +76,9 @@ public class Raster <T> {
                         }
 
                         if (Objects.equals(t1, t2) && t1 > 0 && t1 < 1) {
-                            //System.out.println("    blocked by (" + i + ", " + j + ") "  + t1 + " <> " + t2);
-
                             return false;
-                        } else {
-                            //System.out.println("    not blocked by (" + i + ", " + j + ") "  + t1 + " <> " + t2);
                         }
                     }
-                }
-            }
-        }
-
-        return true;
-    }
-
-    private double distance(int x1, int y1, int x2, int y2) {
-        return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
-    }
-
-    public boolean empty() {
-        for (int i = 0; i < width; i++) {
-            for (int j = 0; j < height; j++) {
-                if (this.get(i, j) != null) {
-                    return false;
                 }
             }
         }

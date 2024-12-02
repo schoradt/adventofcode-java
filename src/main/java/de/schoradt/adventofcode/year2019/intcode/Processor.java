@@ -15,6 +15,10 @@
  */
 package de.schoradt.adventofcode.year2019.intcode;
 
+import lombok.Getter;
+import lombok.Setter;
+
+import java.io.Serial;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -25,9 +29,10 @@ import java.util.List;
  */
 public class Processor {
     private static class UnlimitedArrayList<T> extends ArrayList<T> {
+        @Serial
         private static final long serialVersionUID = 1L;
 
-        T defaultValue;
+        final T defaultValue;
 
         public UnlimitedArrayList(T defaultValue) {
             this.defaultValue = defaultValue;
@@ -62,12 +67,16 @@ public class Processor {
 
     int relativeBase = 0;
 
+    @Setter
     private boolean output = false;
+    @Setter
     private boolean debug = false;
 
+    @Getter
     private boolean run = false;
 
     private final LinkedList<Long> inputValues;
+    @Getter
     private final LinkedList<Long> outputValues;
 
     private Long outputValue = null;
@@ -87,18 +96,6 @@ public class Processor {
         }
     }
 
-    public void setOutput(boolean output) {
-        this.output = output;
-    }
-
-    public LinkedList<Long> getOutputValues() {
-        return outputValues;
-    }
-
-    public void setDebug(boolean debug) {
-        this.debug = debug;
-    }
-
     public void addInput(long input) {
         this.inputValues.add(input);
     }
@@ -106,10 +103,6 @@ public class Processor {
     public void init(long noun, long verb) {
         memory.set(1, noun);
         memory.set(2, verb);
-    }
-
-    public boolean isRun() {
-        return run;
     }
 
     public long process() {

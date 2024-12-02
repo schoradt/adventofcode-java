@@ -6,6 +6,7 @@
 package de.schoradt.adventofcode.year2019;
 
 import de.schoradt.adventofcode.BaseDay;
+import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,9 +20,10 @@ public class Day08 extends BaseDay {
         private final int x;
         private final int y;
 
+        @Getter
         private final List<List<Integer>> layers;
 
-        List<Integer> decoded;
+        final List<Integer> decoded;
 
         public Image(int x, int y) {
             this.x = x;
@@ -55,10 +57,6 @@ public class Day08 extends BaseDay {
 
             // store last layer
             layers.add(actual);
-        }
-
-        public List<List<Integer>> getLayers() {
-            return layers;
         }
 
         public void decode() {

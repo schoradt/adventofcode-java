@@ -5,6 +5,9 @@
  */
 package de.schoradt.adventofcode.year2019.graph;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -16,11 +19,13 @@ import java.util.Set;
  * @author Sven Schoradt (s.schoradt@infotec-edv.de)
  */
 public class Tree {
+    @Getter
     public static class TreeNode {
         String name;
 
         List<TreeNode> children;
 
+        @Setter
         TreeNode parent;
 
         public TreeNode(String name) {
@@ -28,14 +33,6 @@ public class Tree {
 
             parent = null;
             children = new ArrayList<>();
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public List<TreeNode> getChildren() {
-            return children;
         }
 
         public void addChild(TreeNode child) {
@@ -46,16 +43,10 @@ public class Tree {
                 System.out.println("node " + child.getName() + " already used");
             }
         }
-
-        public TreeNode getParent() {
-            return parent;
-        }
-
-        public void setParent(TreeNode parent) {
-            this.parent = parent;
-        }
     }
 
+    @Setter
+    @Getter
     private TreeNode root;
 
     Map<String, TreeNode> nodes;
@@ -64,14 +55,6 @@ public class Tree {
         root = null;
 
         nodes = new HashMap<>();
-    }
-
-    public TreeNode getRoot() {
-        return root;
-    }
-
-    public void setRoot(TreeNode root) {
-        this.root = root;
     }
 
     public TreeNode getNode(String name) {

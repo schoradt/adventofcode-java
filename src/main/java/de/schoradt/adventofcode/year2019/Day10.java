@@ -17,7 +17,6 @@ package de.schoradt.adventofcode.year2019;
 
 import de.schoradt.adventofcode.BaseDay;
 import de.schoradt.adventofcode.year2019.data.Raster;
-import lombok.Getter;
 
 import java.util.List;
 
@@ -26,17 +25,9 @@ import java.util.List;
  * @author Sven Schoradt (s.schoradt@infotec-edv.de)
  */
 public class Day10 extends BaseDay {
-    @Getter
-    public static class Location {
-        private final boolean asteroid;
+    public record Location(boolean asteroid) {}
 
-        public Location(boolean asteroid) {
-            this.asteroid = asteroid;
-        }
-    }
-
-
-    public int bestAstroidViewCount(List<String> lines) {
+    public int bestAsteroidViewCount(List<String> lines) {
         int count = Integer.MIN_VALUE;
 
         Raster<Location> raster = createRaster(lines);

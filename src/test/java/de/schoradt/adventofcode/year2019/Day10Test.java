@@ -31,108 +31,113 @@ public class Day10Test {
     }
 
     @Test
-    public void testBestAstroidViewCount1() {
+    public void testBestAsteroidViewCount1() {
         Day10 day = new Day10();
 
-        String rasterString = ".#..#\n" +
-            ".....\n" +
-            "#####\n" +
-            "....#\n" +
-            "...##";
+        String rasterString = """
+            .#..#
+            .....
+            #####
+            ....#
+            ...##""";
 
         List<String> lines = day.loadLinesString(rasterString);
 
-        assertEquals(8, day.bestAstroidViewCount(lines));
+        assertEquals(8, day.bestAsteroidViewCount(lines));
     }
 
     @Test
-    public void testBestAstroidViewCount2() {
+    public void testBestAsteroidViewCount2() {
         Day10 day = new Day10();
 
-        String rasterString = "......#.#.\n" +
-            "#..#.#....\n" +
-            "..#######.\n" +
-            ".#.#.###..\n" +
-            ".#..#.....\n" +
-            "..#....#.#\n" +
-            "#..#....#.\n" +
-            ".##.#..###\n" +
-            "##...#..#.\n" +
-            ".#....####";
+        String rasterString = """
+            ......#.#.
+            #..#.#....
+            ..#######.
+            .#.#.###..
+            .#..#.....
+            ..#....#.#
+            #..#....#.
+            .##.#..###
+            ##...#..#.
+            .#....####""";
 
         List<String> lines = day.loadLinesString(rasterString);
 
-        assertEquals(33, day.bestAstroidViewCount(lines));
+        assertEquals(33, day.bestAsteroidViewCount(lines));
     }
 
     @Test
-    public void testBestAstroidViewCount3() {
+    public void testBestAsteroidViewCount3() {
         Day10 day = new Day10();
 
-        String rasterString = "#.#...#.#.\n" +
-            ".###....#.\n" +
-            ".#....#...\n" +
-            "##.#.#.#.#\n" +
-            "....#.#.#.\n" +
-            ".##..###.#\n" +
-            "..#...##..\n" +
-            "..##....##\n" +
-            "......#...\n" +
-            ".####.###.";
+        String rasterString = """
+            #.#...#.#.
+            .###....#.
+            .#....#...
+            ##.#.#.#.#
+            ....#.#.#.
+            .##..###.#
+            ..#...##..
+            ..##....##
+            ......#...
+            .####.###.""";
 
         List<String> lines = day.loadLinesString(rasterString);
 
-        assertEquals(35, day.bestAstroidViewCount(lines));
+        assertEquals(35, day.bestAsteroidViewCount(lines));
     }
 
     @Test
-    public void testBestAstroidViewCount4() {
+    public void testBestAsteroidViewCount4() {
         Day10 day = new Day10();
 
-        String rasterString = ".#..#..###\n" +
-"####.###.#\n" +
-"....###.#.\n" +
-"..###.##.#\n" +
-"##.##.#.#.\n" +
-"....###..#\n" +
-"..#.#..#.#\n" +
-"#..#.#.###\n" +
-".##...##.#\n" +
-".....#.#..";
+        String rasterString = """
+            .#..#..###
+            ####.###.#
+            ....###.#.
+            ..###.##.#
+            ##.##.#.#.
+            ....###..#
+            ..#.#..#.#
+            #..#.#.###
+            .##...##.#
+            .....#.#..""";
 
         List<String> lines = day.loadLinesString(rasterString);
 
-        assertEquals(41, day.bestAstroidViewCount(lines));
+        assertEquals(41, day.bestAsteroidViewCount(lines));
     }
 
     @Test
     public void testBestAstroidViewCount5() {
         Day10 day = new Day10();
 
-        String rasterString = ".#..##.###...#######\n" +
-"##.############..##.\n" +
-".#.######.########.#\n" +
-".###.#######.####.#.\n" +
-"#####.##.#.##.###.##\n" +
-"..#####..#.#########\n" +
-"####################\n" +
-"#.####....###.#.#.##\n" +
-"##.#################\n" +
-"#####.##.###..####..\n" +
-"..######..##.#######\n" +
-"####.##.####...##..#\n" +
-".#####..#.######.###\n" +
-"##...#.##########...\n" +
-"#.##########.#######\n" +
-".####.#.###.###.#.##\n" +
-"....##.##.###..#####\n" +
-".#.#.###########.###\n" +
-"#.#.#.#####.####.###\n" +
-"###.##.####.##.#..##";
+        String rasterString = """
+            .#..##.###...#######
+            ##.############..##.
+            .#.######.########.#
+            .###.#######.####.#.
+            #####.##.#.##.###.##
+            ..#####..#.#########
+            ####################
+            #.####....###.#.#.##
+            ##.#################
+            #####.##.###..####..
+            ..######..##.#######
+            ####.##.####...##..#
+            .#####..#.######.###
+            ##...#.##########...
+            #.##########.#######
+            .####.#.###.###.#.##
+            ....##.##.###..#####
+            .#.#.###########.###
+            #.#.#.#####.####.###
+            ###.##.####.##.#..##""";
 
         List<String> lines = day.loadLinesString(rasterString);
 
-        assertEquals(210, day.bestAstroidViewCount(lines));
+        assertEquals(210, day.bestAsteroidViewCount(lines));
     }
 
 

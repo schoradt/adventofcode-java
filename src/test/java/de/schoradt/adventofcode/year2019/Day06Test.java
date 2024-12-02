@@ -27,17 +27,18 @@ public class Day06Test {
     public void testComputeOrbitCountChecksums() {
         Day06 day = new Day06();
 
-        String mapString = "COM)B\n" +
-            "B)C\n" +
-            "C)D\n" +
-            "D)E\n" +
-            "E)F\n" +
-            "B)G\n" +
-            "G)H\n" +
-            "D)I\n" +
-            "E)J\n" +
-            "J)K\n" +
-            "K)L";
+        String mapString = """
+            COM)B
+            B)C
+            C)D
+            D)E
+            E)F
+            B)G
+            G)H
+            D)I
+            E)J
+            J)K
+            K)L""";
 
         List<String> map = day.loadLinesString(mapString);
 
@@ -50,19 +51,20 @@ public class Day06Test {
     public void testmoveToSanta() {
         Day06 day = new Day06();
 
-        String mapString = "COM)B\n" +
-            "B)C\n" +
-            "C)D\n" +
-            "D)E\n" +
-            "E)F\n" +
-            "B)G\n" +
-            "G)H\n" +
-            "D)I\n" +
-            "E)J\n" +
-            "J)K\n" +
-            "K)L\n" +
-            "K)YOU\n" +
-            "I)SAN";
+        String mapString = """
+            COM)B
+            B)C
+            C)D
+            D)E
+            E)F
+            B)G
+            G)H
+            D)I
+            E)J
+            J)K
+            K)L
+            K)YOU
+            I)SAN""";
 
         List<String> map = day.loadLinesString(mapString);
 

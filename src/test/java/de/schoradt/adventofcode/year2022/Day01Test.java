@@ -13,20 +13,21 @@ public class Day01Test {
     public void testMostCalories() {
         Day01 day = new Day01();
 
-        String list = "1000\n"
-            + "2000\n"
-            + "3000\n"
-            + "\n"
-            + "4000\n"
-            + "\n"
-            + "5000\n"
-            + "6000\n"
-            + "\n"
-            + "7000\n"
-            + "8000\n"
-            + "9000\n"
-            + "\n"
-            + "10000";
+        String list = """
+            1000
+            2000
+            3000
+
+            4000
+
+            5000
+            6000
+
+            7000
+            8000
+            9000
+
+            10000""";
 
         assertEquals(14, day.loadLinesString(list).size());
 
@@ -37,20 +38,21 @@ public class Day01Test {
     public void testThreeMostCalories() {
         Day01 day = new Day01();
 
-        String list = "1000\n"
-            + "2000\n"
-            + "3000\n"
-            + "\n"
-            + "4000\n"
-            + "\n"
-            + "5000\n"
-            + "6000\n"
-            + "\n"
-            + "7000\n"
-            + "8000\n"
-            + "9000\n"
-            + "\n"
-            + "10000";
+        String list = """
+            1000
+            2000
+            3000
+
+            4000
+
+            5000
+            6000
+
+            7000
+            8000
+            9000
+
+            10000""";
 
         assertEquals(45000, day.threeMostCalories(day.parseIntergerLines(day.loadLinesString(list))));
     }

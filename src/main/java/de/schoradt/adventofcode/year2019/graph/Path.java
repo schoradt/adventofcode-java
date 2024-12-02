@@ -20,9 +20,9 @@ import java.util.Map;
 public class Path {
 
     @Getter
-    List<Point> points;
+    final List<Point> points;
 
-    Map<Point, Integer> checkMap;
+    final Map<Point, Integer> checkMap;
 
     public Path(List<String> actions) {
         points = new ArrayList<>();
